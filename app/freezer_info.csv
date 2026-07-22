@@ -1,0 +1,33 @@
+Freezer Number,Department,PI,Email,MFG,Model Number,Location,Jack Number,IP,Hostname,MAC,Comments
+1,Chemistry,Strieter,minus80-strieter@chem.umass.edu,unknown,5465,LGRT 720E,Jack 141,10.12.80.11,minus80-strieter-1,b8:27:eb:20:eb:20,,
+2,Chemistry,Rotello,minus80-rotello@chem.umass.edu,Revco,ULT1786-5-A12,LGRT 320F,,10.12.80.12,minus80-rotello-1,b8:27:eb:49:e1:be,,
+3,Chemistry,Farkas,minus80-farkas@chem.umass.edu,Thermo Fisher,TSU 500D,LSL 5th floor,,10.86.30.15,minus80-farkas-1,b8:27:eb:04:74:7c,,
+4,Chemistry,Knapp,minus80-knapp@chem.umass.edu,Revco,ULT2090-5-A30,LGRT 507,,10.12.80.14,minus80-knapp-1,b8:27:eb:be:c5:22,,
+5,Chemistry,Hardy,minus80-hardy@chem.umass.edu,Fisher Sci,IU2386A,LGRT 720E,Jack 135,10.12.80.15,minus80-hardy-1,,b8:27:eb:ae:a3:25,,
+6,Chemistry,Thompson,minus80-thompson@chem.umass.edu,Revco,ULT1490-5-A14,LGRT 820G,,10.12.80.16,minus80-thompson-1,,b8:27:eb:02:a1:f8,,
+7,Chemistry,Martin,minus80-martin@chem.umass.edu,Sanyo,MDF-U52VC,LGRT 820F,,10.12.80.17,minus80-martin-1,b8:27:eb:6c:4b:e3,,
+8,Chemistry,Maroney,minus80-maroney@chem.umass.edu,Sanyo,MDF-U53VA,LSL N376,,10.85.30.5,minus80-maroney-1,b8:27:eb:99:16:ee,,
+9,BMB,BMB (backup),minus80-backup@biochem.umass.edu,,,LGRT 1108,1108 N1,10.12.80.18,minus80-bmbbackup-1,b8:27:eb:fd:7d:60,,
+10,BMB,BMB (backup),minus80-backup@biochem.umass.edu,,,LGRT 1205,1205 N1,10.12.80.19,minus80-bmbbackup-2,b8:27:eb:29:65:b7,,
+11,Chemistry,Chen and others,minus80-lgrt820g-shared@groups.umass.edu,,,LGRT 820G,???,10.12.80.18,minus80-chen-1,b8:27:eb:c1:9c:e5,,
+12,BMB,Cheung,minus80-cheung@biochem.umass.edu,,,LGRT 1105,1105 (near switch),10.12.80.20,minus80-cheung-1,b8:27:eb:e7:64:fd,,
+13,BMB,Garman,minus80-garman@biochem.umass.edu,,,LGRT 1205,1205 S1,10.12.80.21,minus80-garman-1,b8:27:eb:0e:15:8c,,
+14,BMB,Heuck,minus80-heuck@biochem.umass.edu,,,LGRT 1207,1207 S1,10.12.80.22,minus80-heuck-1,b8:27:eb:4d:37:77,,
+15,BMB,Ma,minus80-ma@biochem.umass.edu,,,Bowditch 121,1-1-5-12,128.119.96.137,minus80-ma-1,b8:27:eb:27:37:3d,,
+16,Chemistry,You,minus80-you@chem.umass.edu,,,LGRT 820F,2-2-123-246,10.12.80.13,minus80-you-1,b8:27:eb:41:30:97,,
+17,BMB,Gierasch,minus80-gierasch@biochem.umass.edu,,,LSL N350A,3-2-31-61,10.86.20.49,minus80-gierasch-1,b8:27:eb:33:d4:7f,,
+18,BMB,Vierling,minus80-vierling@biochem.umass.edu,,,LSL N350A,3-2-31-62,10.86.20.50,minus80-vierling-1,b8:27:eb:14:4b:41,,
+19,BMB,Vierling,minus80-vierling@biochem.umass.edu,,,LSL N350A,3-2-32-63,10.86.20.51,minus80-vierling-2,b8:27:eb:a3:3d:03,"Maybe move freezer to other side to be closer to the jack. Also, activate 3-2-32-64"
+20,BMB,Hebert,minus80-hebert@biochem.umass.edu,,,LSL N324,3-2-26-51,10.86.20.52,minus80-hebert-1,b8:27:eb:97:8e:ca,Also activate 3-2-26-52
+21,BMB,Chien,minus80-chien@biochem.umass.edu,,,LSL N322,3-2-21-41,10.86.20.53,minus80-chien-1,b8:27:eb:96:fe:17,Also activate 3-2-21-42
+22,BMB,Wang,minus80-wang@biochem.umass.edu,,,LSL N450,4-1-44-87,10.85.20.54,minus80-wang-1,b8:27:eb:56:4f:6c,,
+23,BMB,Wang,minus80-wang@biochem.umass.edu,,,LSL N450,4-1-44-88,10.85.20.55,minus80-wang-2,b8:27:eb:c4:11:db,,
+24,BMB,Wang,minus80-wang@biochem.umass.edu,,,LSL N450,TBD,10.85.20.56,minus80-wang-3,b8:27:eb:2d:0a:c3,Perhaps use workgroup switch? Check with OIT. Not enough jacks in hallway
+25,BMB,ISB,ctucker@biochem.umass.edu,,,ISB 262a,2-1-125-250,172.30.136.66,minus80-isb262a-1,b8:27:eb:1a:58:86,,
+26,BMB,Stratton,minus80-stratton@biochem.umass.edu,,,LGRT 1104,1104,10.12.80.23,minus80-stratton-1,b8:27:eb:2d:0a:c3,,
+27,Chemistry,Skouta,minus80-skouta@chem.umass.edu,,,LGRT 503,T503N1,10.12.80.24,minus80-skouta-1,b8:27:eb:2d:e1:00,,
+28,BMB,Serio,minus80-serio@biochem.umass.edu,,,LSL N350,3-1-52-104,10.85.20.70,minus80-serio-1,b8:27:eb:35:4b:89,,
+29,BMB,Serio,minus80-serio@biochem.umass.edu,,,LSL N350,3-1-41-82,10.85.20.71,minus80-serio-1,b8:27:eb:7d:9a:3f,,
+30,Chemistry,Skouta,minus80-skouta@chem.umass.edu,,,LGRT 503,T503N1,10.12.80.42,dewar-skouta-1,,b8:27:eb:6a:2a:e6,
+31,Chemistry,Vierling,minus80-vierling@biochem.umass.edu,,,LSL 350,3-2-41-82,10.86.20.120,frig-vierling-1,b8:27:eb:98:07:5e,,
+32,Test,Tester,net-l@chem.umass.umass.edu,Test,TEST000,LGRT TEST,Jack TEST,10.12.13.81,minus80-test-1,aa:bb:cc:dd:ee:ff,Test IP entry

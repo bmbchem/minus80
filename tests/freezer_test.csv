@@ -1,0 +1,5 @@
+Freezer Number,Department,PI,Email,MFG,Model Number,Location,Jack Number,IP,Hostname,MAC,Comments
+1,Chemistry,Person1,minus80-Person1@chem.umass.edu,Vendor,Model A,LGRT 1,Jack 101,92.168.1.98,minus80-Person1-1,aa:bb:cc:dd:ee:11,
+2,Chemistry,Person2,minus80-Person2@chem.umass.edu,Vendor,Model B,LGRT 2,Jack 102,92.168.1.99,minus80-Person2-1,aa:bb:cc:dd:ee:22,
+3,Chemistry,Person3,minus80-Person3@chem.umass.edu,Thermo Fisher,TSU 500D,LGRT 3,,92.168.1.100,minus80-Person3-1,aa:bb:cc:dd:ee:ff,
+
