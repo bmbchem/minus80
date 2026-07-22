@@ -2,6 +2,7 @@
 
 # Standard library imports
 import csv
+import os
 import pathlib
 
 class FreezerData:
@@ -19,8 +20,10 @@ class FreezerData:
         parse_csv(ip, hostname=None): Parse CSV file and determines appropriate freezer data
     """
 
-    def __init__(self, csv_file = pathlib.Path(__file__).resolve().parent.joinpath("freezer_info.csv")):
+    def __init__(self, csv_file=None):
 
+        if csv_file is None:
+            csv_file = os.environ.get("FREEZER_CSV", pathlib.Path(__file__).resolve().parent.joinpath("freezer_info.csv"))
         self.__csv_file = csv_file
         self.__data = {}
     

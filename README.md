@@ -25,7 +25,15 @@ For UMass MailHub, the current defaults use mailhub.oit.umass.edu on port 25 wit
 This version uses the sender email configured in app/mail_data.py and is set up for MailHub access by the project maintainer, Xia Huang.
 
 ### CSV file
-The main freezer mapping file is app/freezer_info.csv. This is the file that should be edited by lab staff when freezer contacts or locations change.
+The main freezer mapping file is app/freezer_info.csv by default, but for deployment to multiple Pis it is better to keep the freezer mapping as local per-device data.
+
+You can override the CSV path by setting the FREEZER_CSV environment variable, for example:
+
+```bash
+export FREEZER_CSV=/path/to/local/freezer_info.csv
+```
+
+This makes it easy to keep the repo public while copying a private or site-specific CSV file manually onto each Pi.
 
 The file tests/freezer_test.csv is a sample fixture used by the unit tests.
 
