@@ -1,107 +1,65 @@
 # minus80
 
-## Project Overview
-Python program for monitoring Minus 80 freezers and sending alert notifications.
+## Project overview
+This project monitors Minus 80 freezer status on a Raspberry Pi and sends email alerts when an alarm or recovery event occurs.
 
-The program monitors a specific pin on a Raspberry Pi for a state change and 
-alerts an alarm state or recovery based on the voltage applied to the pin. 
-The alert sends an email to notify lab members of a potential problem with
-their minus80 freezer by parsing a CSV file for the correct recipient based
-on the Pi's IP address. If the pin is in an alarm state the program will email
-recipients every ten minutes for an hour or until a recovery state is reached
-which ever comes first.
+The program watches a GPIO pin for state changes, looks up the freezer mapping from a CSV file, and sends notification emails to the appropriate contact. If the freezer lookup fails, the IT group is notified instead.
 
-The program uses the [RPi.GPIO package](https://pypi.org/project/RPi.GPIO/) 
-to monitor pin input and detect edge changes.
-
-The program has a configuration file called `mail_data.py` that allows
-one to configure a sender, IT group email, and other authentication data.
-
-If the CSV file fails to be parsed for a recipient the IT team is emailed the
-error message to respond appropriately. If there is a network issue the program
-attempts to email the IT Team repeatedly every five minutes until the issue
-is resolved.
-
-Status, error, and critical messages are logged to the console and to 
-`/var/log/syslog`.
+The current implementation uses the RPi.GPIO package for GPIO monitoring and Python's standard library for CSV and SMTP handling.
 
 ## Installation
-
-1. Download minus 80 program from GitHub: You will need to place a zip of the program in the home directory of bmbchem. This repo is currently private and does not support curl or wget commands.
-2. Place `minus80` directory in `/usr/local/sbin/` : `drwxr-xr-x 4 bmbchem bmbchem 4096 May 16 19:33 minus80`
-2. Install and create virtual environment in `/usr/local/sbin/`owned by `bmbchem`:
-```
-apt install python3-venv
-mkdir /usr/local/sbin/venv && cd /usr/local/sbin/venv
-python3 -m venv env
-```
-4. Change to minus80 directory: `cd /usr/local/sbin/minus80/`
-3. Activate virtual environment: `source /usr/local/sbin/venv/env/bin/activate`
-4. Install program requirements: `pip3 install -r requirements.txt`
-5. Deactivate virtual environment: `(env) $ deactivate`
+1. Clone this repository.
+2. Create and activate a Python virtual environment.
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. If you are running this on a Raspberry Pi, make sure the GPIO libraries are available for your system.
 
 ## Configuration
-### mail_data
-Configure mail data with the following info to successfully send email.
-For UMass Mailhub, use `mailhub.umass.edu` on port `25` and no authentication is required.
-- IT Group email address
-- Sender (the address from which the email will be sent)
-- Password for the sender email account (optional; set the MAIL_PASSWORD environment variable instead of hardcoding it, and only provide it when your SMTP server requires authentication)
-- IMAP server
-- Port
+### Mail settings
+The mail configuration lives in app/mail_data.py.
+
+For UMass MailHub, the current defaults use mailhub.oit.umass.edu on port 25 with no authentication. If your SMTP server requires authentication, set the MAIL_PASSWORD environment variable before running the program.
+
+This version uses the sender email configured in app/mail_data.py and is set up for MailHub access by the project maintainer, Xia Huang.
 
 ### CSV file
-COLUMNS: `Freezer Number,Department,PI,Email,MFG,Model Number,Location,Jack Number,IP,Hostname,MAC,Comments`
+The main freezer mapping file is app/freezer_info.csv. This is the file that should be edited by lab staff when freezer contacts or locations change.
 
-## Operation
-1. Activate virtual environment: `source /usr/local/sbin/venv/env/bin/activate`
-2. Run: `python3 /usr/local/sbin/minus80/minus80_main.py`
+The file tests/freezer_test.csv is a sample fixture used by the unit tests.
 
-Note: Runs forever; Keyboard interrupt is not processed as RPi.GPIO.wait_for_edge function blocks interrupt signal. Use `systemctl` to manage `minus80.service`.
+## Running
+Run the main program with:
 
-## File List
-```.
-├── app
-│   ├── Board.py
-│   ├── Email.py
-│   ├── Event.py
-│   ├── FreezerData.py
-│   ├── freezer_info.csv
-│   ├── __init__.py
-│   └── mail_data.py
-├── __init__.py
-├── LICENSE
-├── minus80_main.py
-├── README.md
-├── requirements.txt
-├── setup.py
-└── tests
-    ├── ErrorAfterCall.py
-    ├── freezer_test.csv
-    ├── __init__.py
-    ├── test_board.py
-    ├── test_email.py
-    ├── test_event.py
-    ├── test_freezer_data.py
-    └── test_integration.py
+```bash
+python3 minus80_main.py
 ```
 
-## Test
-Tests are contained in `tests/` and are discoverable by unittest:
-1. Activate virtual environment: `source /usr/local/sbin/venv/env/bin/activate`
-2. `cd /usr/local/sbin/minus80/`
-3. Run: `python3 -m unittest discover`
-4. Deactivate virtual environment: `(env) $ deactivate`
+The program runs continuously until interrupted.
 
-To test email functionality you can run the Email class: 
-1. Activate virtual environment: `source /usr/local/sbin/venv/env/bin/activate`
-3. Run: `python3 /usr/local/sbin/minus80/app/Email.py [email address to send test to]`
-4. Deactivate virtual environment: `(env) $ deactivate`
+## Tests
+Run the test suite with:
 
-## Contact information
+```bash
+python3 -m unittest discover -s tests
+```
+
+To test email sending manually, run:
+
+```bash
+python3 app/Email.py your.email@example.com
+```
+
+## Repository layout
+- app/ contains the main application modules and the default freezer CSV.
+- tests/ contains the unit tests and sample CSV data.
+- requirements.txt lists the Python dependencies.
+
+## Contact
 Developer: Nikki Tebaldi
 
-Contact: ntebaldi@umass.edu
+Email: ntebaldi@umass.edu
 
 ## Changelog
-Version 2.0: Revamp of minus80 script using object-oriented programming.
+- Version 2.0: Refactor of the Minus 80 monitor into an object-oriented Python program.
