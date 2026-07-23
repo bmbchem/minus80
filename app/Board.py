@@ -60,7 +60,7 @@ class Board:
         """
         self.__pin = pin
         self.__hostname = socket.gethostname()
-        self.__ip = netifaces.ifaddresses("eth1")[2][0]["addr"]
+        self.__ip = self.__get_ip()
         self.__input_status = None    # Set to None as monitor() will initialize
         self.__board_logger = self.__init_board_logger()
 
@@ -95,6 +95,51 @@ class Board:
 
         # Return logger
         return board_logger
+    
+    def __get_ip(self):
+        """Return the primary IPv4 address for the host.
+
+        Strategy:
+        - Prefer the interface used by the system default IPv4 gateway.
+        - Fallback to the first non-loopback IPv4 found on any interface.
+        - Final fallback: determine local IP by connecting a UDP socket.
+        """
+        try:
+            # Try to get the interface for the default gateway
+            gws = netifaces.gateways()
+            default = gws.get('default', {})
+            inet_gw = default.get(netifaces.AF_INET)
+            if inet_gw and len(inet_gw) >= 2:
+                iface = inet_gw[1]
+                addrs = netifaces.ifaddresses(iface).get(netifaces.AF_INET)
+                if addrs:
+                    addr = addrs[0].get('addr')
+                    if addr:
+                        return addr
+        except Exception:
+            pass
+
+        try:
+            # Scan interfaces for the first non-loopback IPv4
+            for iface in netifaces.interfaces():
+                addrs = netifaces.ifaddresses(iface).get(netifaces.AF_INET)
+                if not addrs:
+                    continue
+                addr = addrs[0].get('addr')
+                if addr and not addr.startswith('127.'):
+                    return addr
+        except Exception:
+            pass
+
+        try:
+            # As a last resort, ask the OS for the outgoing IP by using a UDP socket
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            s.connect(("8.8.8.8", 80))
+            ip = s.getsockname()[0]
+            s.close()
+            return ip
+        except Exception:
+            return '127.0.0.1'
     
     def get_hostname(self):
         """Return hostname"""
